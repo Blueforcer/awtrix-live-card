@@ -6,24 +6,12 @@ import {
 import { fireEvent } from "./utils.js";
 
 const SCHEMA = [
-  { name: "title", selector: { text: {} } },
-  { name: "url", selector: { text: {} } },
-  {
-    name: "",
-    type: "grid",
-    schema: [
-      { name: "entity", selector: { entity: {} } },
-      {
-        name: "attribute",
-        selector: { attribute: { entity_id: "" } },
-        context: { filter_entity: "entity" },
-      },
-    ],
+  { name: "title",
+   selector: { text: {} }
   },
-  {
-    name: "",
-    type: "grid",
-    schema: [{ name: "tap_action", selector: { "ui-action": {} } }],
+  { name: "awtrix_ip",
+   selector: { text: {}},
+  required: true
   },
   {
     name: "refresh_interval",
