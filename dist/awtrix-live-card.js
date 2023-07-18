@@ -6,7 +6,7 @@ import {
 import "./awtrix-live-card-editor.js";
 import { handleAction } from "./utils.js";
 
-class ResfeshablePictureCard extends LitElement {
+class AwtrixLiveCard extends LitElement {
   static properties = {
     hass: {},
     config: {},
@@ -159,4 +159,4 @@ const cardDef = {
 window.customCards = window.customCards || [];
 window.customCards.push(cardDef);
 
-customElements.define("awtrix-live-card", ResfeshablePictureCard);
+customElements.define("awtrix-live-card", AwtrixLiveCard);
