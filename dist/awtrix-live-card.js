@@ -46,7 +46,7 @@ class AwtrixLiveCard extends LitElement {
   connectedCallback() {
     super.connectedCallback?.();
 
-    const refreshTime = (this.config.refresh_interval || 30) * 1000;
+    const refreshTime = (this.config.refresh_interval || 2000) ;
     clearInterval(this._refreshInterval);
     this._refreshInterval = setInterval(
       () => (this.pictureUrl = this._getTimestampedUrl()),
