@@ -28,12 +28,9 @@ class ResfeshablePictureCard extends LitElement {
     return {
       type: "custom:awtrix-live-card",
       title: "Refreshable Picture",
-      refresh_interval: 30,
-      url: "",
-      entity: "",
-      attribute: "",
+      refresh_interval: 5,
+      AWTRIX IP: "",
       noMargin: true,
-      tap_action: { action: "none" },
     };
   }
 
@@ -151,12 +148,12 @@ class ResfeshablePictureCard extends LitElement {
 }
 
 const cardDef = {
-  type: "awtrix-live-card",
+  type: "AWTRIX live card",
   name: "Refreshable Picture Card",
   description:
-    "A picture that can be loaded from url or entity attribute and refreshed every N seconds",
+    "Displays the actual awtrix matrix screen and refreshed every N seconds",
   preview: true,
-  documentationURL: "https://github.com/dimagoltsman/awtrix-live-card",
+  documentationURL: "https://github.com/Blueforcer/awtrix-live-card",
   configurable: true,
 };
 window.customCards = window.customCards || [];
