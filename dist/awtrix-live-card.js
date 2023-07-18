@@ -30,7 +30,6 @@ class AwtrixLiveCard extends LitElement {
       title: "AWTRIX Live",
       refresh_interval: 5,
       url: "",
-      attribute: "",
       noMargin: true,
       tap_action: { action: "none" },
     };
@@ -38,7 +37,7 @@ class AwtrixLiveCard extends LitElement {
 
   setConfig(config) {
     if (!config.url) {
-      throw new Error("You need to define either a url or an entity");
+      throw new Error("You need to define your awtrix ip");
     }
     this.config = config;
   }
@@ -121,12 +120,8 @@ class AwtrixLiveCard extends LitElement {
   `;
 
   _getPictureUrl() {
-    const { url, entity, attribute } = this.config;
-    if (!entity) {
+    const { url } = this.config;
       return url;
-    }
-    const pictStates = this.hass.states[entity];
-    return attribute ? pictStates["attributes"][attribute] : pictStates.state;
   }
 
   _getTimestampedUrl() {
