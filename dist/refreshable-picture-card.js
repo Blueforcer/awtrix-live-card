@@ -27,16 +27,22 @@ class AwtrixLiveCard extends LitElement {
   static getStubConfig() {
     return {
       type: "custom:awtrix-live-card",
-      title: "AWTRIX matrix live feed",
+      title: "AWTRIX Live",
       refresh_interval: 5,
-      awtrix_ip: "",
+      url: "",
+      entity: "",
+      attribute: "",
       noMargin: true,
+      tap_action: { action: "none" },
     };
   }
 
   setConfig(config) {
-    if (!config.url) {
+    if (!config.url && !config.entity) {
       throw new Error("You need to define either a url or an entity");
+    }
+    if (config.url && config.entity) {
+      throw new Error("You need to define only one of url or entity");
     }
     this.config = config;
   }
@@ -98,10 +104,10 @@ class AwtrixLiveCard extends LitElement {
       border-color: var(--ha-card-border-color, var(--divider-color, #e0e0e0));
       color: var(--primary-text-color);
       transition: all 0.3s ease-out 0s;
-      image-rendering: pixelated
       position: relative;
       border-radius: var(--ha-card-border-radius, 12px);
       width: 100%;
+      image-rendering: pixelated;
     }
     .withMargin {
       margin: 5%;
@@ -119,12 +125,23 @@ class AwtrixLiveCard extends LitElement {
   `;
 
   _getPictureUrl() {
-    const { awtrix_ip } = this.config;
-    return "http://" + awtrix_ip + "/mirror.bmp";
+    const { url, entity, attribute } = this.config;
+    if (!entity) {
+      return url;
+    }
+    const pictStates = this.hass.states[entity];
+    return attribute ? pictStates["attributes"][attribute] : pictStates.state;
   }
 
   _getTimestampedUrl() {
-    let url = this._getPictureUrl();    
+    let url = this._getPictureUrl();
+    
+    if(url.indexOf("?") > -1){
+        url = url + "&currentTimeCache=" + (new Date().getTime())
+      }else{
+        url = url + "?currentTimeCache=" + (new Date().getTime())
+      }
+    
     return url || "";
   }
 
@@ -134,12 +151,12 @@ class AwtrixLiveCard extends LitElement {
 }
 
 const cardDef = {
-  type: "AWTRIX live card",
-  name: "AWTRIX matrix live feed",
+  type: "awtrix-live-card",
+  name: "AWTRIX Live Card",
   description:
-    "Displays the actual awtrix matrix screen and refreshed every N seconds",
+    "Shows the actual matrix",
   preview: true,
-  documentationURL: "https://github.com/Blueforcer/awtrix-live-card",
+  documentationURL: "https://github.com/blueforcer/awtrix-live-card",
   configurable: true,
 };
 window.customCards = window.customCards || [];
