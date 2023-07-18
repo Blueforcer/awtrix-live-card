@@ -27,7 +27,7 @@ class AwtrixLiveCard extends LitElement {
   static getStubConfig() {
     return {
       type: "custom:awtrix-live-card",
-      title: "Refreshable Picture",
+      title: "AWTRIX matrix live feed",
       refresh_interval: 5,
       awtrix_ip: "",
       noMargin: true,
@@ -35,11 +35,8 @@ class AwtrixLiveCard extends LitElement {
   }
 
   setConfig(config) {
-    if (!config.url && !config.entity) {
+    if (!config.url) {
       throw new Error("You need to define either a url or an entity");
-    }
-    if (config.url && config.entity) {
-      throw new Error("You need to define only one of url or entity");
     }
     this.config = config;
   }
@@ -122,23 +119,12 @@ class AwtrixLiveCard extends LitElement {
   `;
 
   _getPictureUrl() {
-    const { url, entity, attribute } = this.config;
-    if (!entity) {
-      return url;
-    }
-    const pictStates = this.hass.states[entity];
-    return attribute ? pictStates["attributes"][attribute] : pictStates.state;
+    const { awtrix_ip } = this.config;
+    return "http://" + awtrix_ip + "/mirror.bmp";
   }
 
   _getTimestampedUrl() {
-    let url = this._getPictureUrl();
-    
-    if(url.indexOf("?") > -1){
-        url = url + "&currentTimeCache=" + (new Date().getTime())
-      }else{
-        url = url + "?currentTimeCache=" + (new Date().getTime())
-      }
-    
+    let url = this._getPictureUrl();    
     return url || "";
   }
 
@@ -149,7 +135,7 @@ class AwtrixLiveCard extends LitElement {
 
 const cardDef = {
   type: "AWTRIX live card",
-  name: "Refreshable Picture Card",
+  name: "AWTRIX matrix live feed",
   description:
     "Displays the actual awtrix matrix screen and refreshed every N seconds",
   preview: true,
