@@ -29,7 +29,7 @@ class ResfeshablePictureCard extends LitElement {
       type: "custom:awtrix-live-card",
       title: "Refreshable Picture",
       refresh_interval: 5,
-      AWTRIX IP: "",
+      awtrix_ip: "",
       noMargin: true,
     };
   }
