@@ -1,4 +1,7 @@
 {
-    "name": "awtrix-live-card",
-    "render_readme": true
+  "name": "AWTRIX live card",
+  "description" : "Displays the actual awtrix matrix screen and refreshed every N seconds",
+  "content_in_root": false,
+  "filename": "awtrix-live-card.js",
+  "render_readme" : true
 }
