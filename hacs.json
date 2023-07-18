@@ -1,12 +1,4 @@
 {
-    "name": "AWTRIX Live Card",
-    "content_in_root": false,
-    "render_readme": true,
-    "filename": "awtrix-live-card.js",
-    "domoticz_compatible": false,
-    "openpeerpower_compatible": true,
-    "zip_release": false,
-    "version": "1.0.0",
-    "updated_at": "2023-07-18T00:00:00Z"
-  }
-  
+    "name": "awtrix-live-card",
+    "render_readme": true
+}
