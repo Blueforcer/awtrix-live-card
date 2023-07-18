@@ -30,7 +30,6 @@ class AwtrixLiveCard extends LitElement {
       title: "AWTRIX Live",
       refresh_interval: 5,
       url: "",
-      entity: "",
       attribute: "",
       noMargin: true,
       tap_action: { action: "none" },
@@ -38,11 +37,8 @@ class AwtrixLiveCard extends LitElement {
   }
 
   setConfig(config) {
-    if (!config.url && !config.entity) {
+    if (!config.url) {
       throw new Error("You need to define either a url or an entity");
-    }
-    if (config.url && config.entity) {
-      throw new Error("You need to define only one of url or entity");
     }
     this.config = config;
   }

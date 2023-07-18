@@ -11,18 +11,6 @@ const SCHEMA = [
   {
     name: "",
     type: "grid",
-    schema: [
-      { name: "entity", selector: { entity: {} } },
-      {
-        name: "attribute",
-        selector: { attribute: { entity_id: "" } },
-        context: { filter_entity: "entity" },
-      },
-    ],
-  },
-  {
-    name: "",
-    type: "grid",
     schema: [{ name: "tap_action", selector: { "ui-action": {} } }],
   },
   {
